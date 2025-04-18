@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import {FeatureAComponent} from './features/feature-a/feature-a.component';
-import {FeatureBComponent} from './features/feature-b/feature-b.component';
 import {FeatureManagerService} from './services/feature-manager.service';
+import {MainLayoutComponent} from './widgets/main-layout/main-layout.component';
+import {NgComponentOutlet} from '@angular/common';
 
 
 @Component({
   selector: 'app-root',
   imports: [
-    FeatureAComponent,
-    FeatureBComponent
+    MainLayoutComponent,
+    NgComponentOutlet
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

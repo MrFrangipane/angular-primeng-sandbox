@@ -14,7 +14,9 @@ export class FeatureAComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.word = 'delayed Hello World';
+      for (let i = 0; i < 1000; i++) {
+        this.word += 'delayed multiple Hello World ';
+      }
     }, 500);
   }
 }

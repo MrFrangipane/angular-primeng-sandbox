@@ -1,14 +1,5 @@
-<div>
-  <button (click)="featureManagerService.toggleFeature()">Toggle Feature</button>
-</div>
+<app-main-layout/>
 
 <main class="main">
-  @switch (featureManagerService.currentFeature) {
-    @case ('feature-a') {
-      <app-feature-a></app-feature-a>
-    }
-    @case ('feature-b') {
-      <app-feature-b></app-feature-b>
-    }
-  }
+  <ng-container *ngComponentOutlet="featureManagerService.getCurrentFeatureComponent()"/>
 </main>
