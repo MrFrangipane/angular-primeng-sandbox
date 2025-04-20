@@ -11,7 +11,7 @@
         size="small"
         pTooltip="{{ featureDefinition.name }}"
         tooltipPosition="bottom"
-        [outlined]="!featureDefinition.isHomeFeature"
+        [outlined]="featureDefinition.id !== featureManagerService.getCurrentFeatureId()"
       />
     }
     <div class="flex-grow"></div>
@@ -32,7 +32,7 @@
             label="{{ featureDefinition.name }}"
             (click)="featureManagerService.setCurrentFeatureById(featureDefinition.id)"
             severity="contrast"
-            [variant]="featureDefinition.isHomeFeature ? undefined : 'text'"
+            [variant]="featureDefinition.id === featureManagerService.getCurrentFeatureId() ? undefined : 'text'"
           />
           </p-fluid>
         }

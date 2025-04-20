@@ -17,7 +17,9 @@ export class FeatureManagerService {
   constructor(
     private authorizationService: DemoAuthorizationService,
     private urlParametersService: UrlParametersService,
-  ) {}
+  ) {
+    this.currentFeatureId = this.urlParametersService.getValue('currentFeature', "");
+  }
 
   setAvailableFeatures(definitions: FeatureDefinition[]) {
     this.featureDefinitions = definitions;
@@ -33,8 +35,6 @@ export class FeatureManagerService {
   }
 
   getCurrentFeatureComponent(): any | null {
-    // Todo move this part to when page is loaded ?
-    this.currentFeatureId = this.urlParametersService.getValue('currentFeature', "");
     let featureDefinition = this.getAuthorizedFeatures().find(definition => definition.id === this.currentFeatureId);
     if (featureDefinition) {
       return featureDefinition.component;
@@ -42,6 +42,10 @@ export class FeatureManagerService {
 
     this.setCurrentFeatureById(this.homeFeature!.id);
     return this.homeFeature!.component;
+  }
+
+  getCurrentFeatureId(): string | null {
+    return this.currentFeatureId;
   }
 
   setCurrentFeatureById(featureId: string) {
