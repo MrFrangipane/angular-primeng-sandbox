@@ -1,0 +1,3 @@
+interface AuthorizationServiceInterface {
+  getUserRoles(): string[];
+}

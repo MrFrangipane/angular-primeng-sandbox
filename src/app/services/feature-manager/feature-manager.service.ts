@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FeatureDefinition} from './feature-definition.dataclass';
 import {UrlParametersService} from '../url-parameters.service';
+import {DemoAuthorizationService} from '../authorization/demo.service';
 
 
 @Injectable({
@@ -11,27 +12,36 @@ export class FeatureManagerService {
 
   private currentFeatureId: string | null = null;
   private featureDefinitions: FeatureDefinition[] = [];
+  private homeFeature: FeatureDefinition | undefined;
 
   constructor(
+    private authorizationService: DemoAuthorizationService,
     private urlParametersService: UrlParametersService,
   ) {}
 
   setAvailableFeatures(definitions: FeatureDefinition[]) {
     this.featureDefinitions = definitions;
+    this.homeFeature = this.featureDefinitions.find(definition => definition.isHomeFeature);
+    if (!this.homeFeature) {
+      throw new Error('No home feature defined');
+    }
   }
 
-  getAvailableFeatures(): FeatureDefinition[] {
-    return this.featureDefinitions;
+  getAuthorizedFeatures(): FeatureDefinition[] {
+    const roles: string[] = this.authorizationService.getUserRoles();
+    return this.featureDefinitions.filter(definition => roles.includes(definition.authorizedForUserRole));
   }
 
   getCurrentFeatureComponent(): any | null {
-    // Todo move this part to when page is loaded
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('currentFeature')) {
-      this.currentFeatureId = urlParams.get('currentFeature');
+    // Todo move this part to when page is loaded ?
+    this.currentFeatureId = this.urlParametersService.getValue('currentFeature', "");
+    let featureDefinition = this.getAuthorizedFeatures().find(definition => definition.id === this.currentFeatureId);
+    if (featureDefinition) {
+      return featureDefinition.component;
     }
 
-    return this.featureDefinitions.find(definition => definition.id === this.currentFeatureId)!.component;
+    this.setCurrentFeatureById(this.homeFeature!.id);
+    return this.homeFeature!.component;
   }
 
   setCurrentFeatureById(featureId: string) {

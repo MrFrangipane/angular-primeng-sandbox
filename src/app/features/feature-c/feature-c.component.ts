@@ -3,20 +3,19 @@ import {Slider} from 'primeng/slider';
 import {FormsModule} from '@angular/forms';
 import {SharedStateService} from '../../services/shared-state.service';
 import {FeatureDefinition} from '../../services/feature-manager/feature-definition.dataclass';
-import {FeatureCComponent} from '../feature-c/feature-c.component';
 
 
 @Component({
-  selector: 'app-feature-b',
+  selector: 'app-feature-c',
   imports: [
     Slider,
     FormsModule
   ],
-  templateUrl: './feature-b.component.html',
-  styleUrl: './feature-b.component.css'
+  templateUrl: './feature-c.component.html',
+  styleUrl: './feature-c.component.css'
 })
 
-export class FeatureBComponent implements OnInit {
+export class FeatureCComponent implements OnInit {
   word: string = '';
 
   constructor(
@@ -31,11 +30,11 @@ export class FeatureBComponent implements OnInit {
 }
 
 
-export const featureBDefinition: FeatureDefinition = {
-  id: 'feature-b',
-  name: 'Feature B',
-  icon: 'pi pi-clock',
-  component: FeatureBComponent,
-  authorizedForUserRole: 'role-a',
+export const featureCDefinition: FeatureDefinition = {
+  id: 'feature-c',
+  name: 'Feature C',
+  icon: 'pi pi-cog',
+  component: FeatureCComponent,
+  authorizedForUserRole: 'role-b',
   isHomeFeature: false
 };

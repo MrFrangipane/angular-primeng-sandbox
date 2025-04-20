@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Slider} from 'primeng/slider';
 import {SharedStateService} from '../../services/shared-state.service';
 import {FormsModule} from '@angular/forms';
+import {FeatureDefinition} from '../../services/feature-manager/feature-definition.dataclass';
 
 
 @Component({
@@ -29,3 +30,13 @@ export class FeatureAComponent implements OnInit {
     }, 500);
   }
 }
+
+
+export const featureADefinition: FeatureDefinition = {
+  id: 'feature-a',
+  name: 'Feature A',
+  icon: 'pi pi-home',
+  component: FeatureAComponent,
+  authorizedForUserRole: 'role-a',
+  isHomeFeature: true
+};
