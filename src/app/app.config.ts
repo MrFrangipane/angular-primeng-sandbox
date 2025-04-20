@@ -1,7 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {providePrimeNG} from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import {DemoTheme} from './app.theme';
 
 import {authorizationServiceInterfaceInjectionToken} from './core/services/authorization/authorization.interface';
 import {DemoAuthorizationService} from './services/demo-authorization.service';
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura
+        preset: DemoTheme
       }
     }),
     { provide: authorizationServiceInterfaceInjectionToken, useClass: DemoAuthorizationService }
