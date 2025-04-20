@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AuthorizationServiceInterface } from './authorization.interface';
+import {AuthorizationServiceInterface} from '../core/services/authorization/authorization.interface';
+
 
 
 @Injectable({

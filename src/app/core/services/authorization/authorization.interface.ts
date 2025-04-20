@@ -9,4 +9,4 @@ export interface AuthorizationServiceInterface {
 }
 
 
-export const AuthorizationServiceToken = new InjectionToken<AuthorizationServiceInterface>('AuthorizationService');
+export const authorizationServiceInterfaceInjectionToken = new InjectionToken<AuthorizationServiceInterface>('AuthorizationService');

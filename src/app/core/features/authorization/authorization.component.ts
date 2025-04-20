@@ -1,6 +1,10 @@
 import {Component, Inject} from '@angular/core';
 import {Button} from 'primeng/button';
-import {AuthorizationServiceInterface, AuthorizationServiceToken} from '../authorization.interface';
+
+import {
+  AuthorizationServiceInterface,
+  authorizationServiceInterfaceInjectionToken
+} from '../../services/authorization/authorization.interface';
 
 
 @Component({
@@ -15,6 +19,6 @@ import {AuthorizationServiceInterface, AuthorizationServiceToken} from '../autho
 export class AuthorizationComponent {
 
   constructor(
-    @Inject(AuthorizationServiceToken) protected authorizationService: AuthorizationServiceInterface,
+    @Inject(authorizationServiceInterfaceInjectionToken) protected authorizationService: AuthorizationServiceInterface,
   ) {}
 }

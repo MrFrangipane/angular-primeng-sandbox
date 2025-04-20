@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Slider} from 'primeng/slider';
 import {FormsModule} from '@angular/forms';
-import {SharedStateService} from '../../services/shared-state.service';
-import {FeatureDefinition} from '../../services/feature-manager/feature-definition.dataclass';
-import {FeatureCComponent} from '../feature-c/feature-c.component';
+
+import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
+import {SharedStateService} from '../../core/services/shared-state.service';
 
 
 @Component({

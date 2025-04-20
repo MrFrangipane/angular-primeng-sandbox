@@ -1,8 +1,9 @@
 import {Inject, Injectable} from '@angular/core';
+
 import {FeatureDefinition} from './feature-definition.dataclass';
 import {UrlParametersService} from '../url-parameters.service';
-import {AuthorizationComponent} from '../authorization/feature/authorization.component';
-import {AuthorizationServiceInterface, AuthorizationServiceToken} from '../authorization/authorization.interface';
+import {AuthorizationServiceInterface, authorizationServiceInterfaceInjectionToken} from '../authorization/authorization.interface';
+import {AuthorizationComponent} from '../../features/authorization/authorization.component';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class FeatureManagerService {
   private authorizationComponent: any = AuthorizationComponent;
 
   constructor(
-    @Inject(AuthorizationServiceToken) protected authorizationService: AuthorizationServiceInterface,
+    @Inject(authorizationServiceInterfaceInjectionToken) protected authorizationService: AuthorizationServiceInterface,
     private urlParametersService: UrlParametersService,
   ) {
     this.currentFeatureId = this.urlParametersService.getValue('currentFeature', "");

@@ -2,8 +2,9 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {providePrimeNG} from 'primeng/config';
 import Aura from '@primeng/themes/aura';
-import {AuthorizationServiceToken} from './services/authorization/authorization.interface';
-import {DemoAuthorizationService} from './services/authorization/demo.service';
+
+import {authorizationServiceInterfaceInjectionToken} from './core/services/authorization/authorization.interface';
+import {DemoAuthorizationService} from './services/demo-authorization.service';
 
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
         preset: Aura
       }
     }),
-    { provide: AuthorizationServiceToken, useClass: DemoAuthorizationService }
+    { provide: authorizationServiceInterfaceInjectionToken, useClass: DemoAuthorizationService }
   ]
 };

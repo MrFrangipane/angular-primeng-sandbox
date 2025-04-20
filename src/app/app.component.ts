@@ -1,9 +1,10 @@
 import {Component, HostListener} from '@angular/core';
-import {MainLayoutComponent} from './widgets/main-layout/main-layout.component';
 import {NgComponentOutlet} from '@angular/common';
-import {FeatureManagerService} from './services/feature-manager/feature-manager.service';
-import {ScreenService} from './services/screen.service';
+
 import {features} from './app.features';
+import {MainLayoutComponent} from './core/widgets/main-layout/main-layout.component';
+import {FeatureManagerService} from './core/services/feature-manager/feature-manager.service';
+import {ScreenService} from './core/services/screen.service';
 
 
 @Component({

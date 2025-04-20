@@ -7,7 +7,7 @@ import {FeatureManagerService} from '../../services/feature-manager/feature-mana
 import {ScreenService} from '../../services/screen.service';
 import {
   AuthorizationServiceInterface,
-  AuthorizationServiceToken
+  authorizationServiceInterfaceInjectionToken
 } from '../../services/authorization/authorization.interface';
 
 
@@ -28,7 +28,7 @@ export class MainLayoutComponent {
   constructor(
     protected featureManagerService: FeatureManagerService,
     protected screenService: ScreenService,
-    @Inject(AuthorizationServiceToken) protected authorizationService: AuthorizationServiceInterface,
+    @Inject(authorizationServiceInterfaceInjectionToken) protected authorizationService: AuthorizationServiceInterface,
   ) {}
 
 }
