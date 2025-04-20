@@ -1,16 +1,20 @@
 import {Injectable} from '@angular/core';
 import {FeatureDefinition} from './feature-definition.dataclass';
+import {UrlParametersService} from '../url-parameters.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FeatureManagerService {
 
   private currentFeatureId: string | null = null;
   private featureDefinitions: FeatureDefinition[] = [];
 
-  constructor() { }
+  constructor(
+    private urlParametersService: UrlParametersService,
+  ) {}
 
   setAvailableFeatures(definitions: FeatureDefinition[]) {
     this.featureDefinitions = definitions;
@@ -32,21 +36,7 @@ export class FeatureManagerService {
 
   setCurrentFeatureById(featureId: string) {
     this.currentFeatureId = featureId;
-    this.updateUrlParameters({ currentFeature: this.currentFeatureId });
-  }
-
-  private updateUrlParameters(params: { [key: string]: string }) {
-    const url = new URL(window.location.href);
-
-    Object.entries(params).forEach(([key, value]) => {
-      if (value === null || value === undefined) {
-        url.searchParams.delete(key);
-      } else {
-        url.searchParams.set(key, value);
-      }
-    });
-
-    window.history.pushState({}, '', url);
+    this.urlParametersService.updateUrlParameters({ currentFeature: this.currentFeatureId });
   }
 
 }
