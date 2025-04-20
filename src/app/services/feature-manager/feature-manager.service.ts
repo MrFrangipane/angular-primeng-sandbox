@@ -1,7 +1,8 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {FeatureDefinition} from './feature-definition.dataclass';
 import {UrlParametersService} from '../url-parameters.service';
-import {DemoAuthorizationService} from '../authorization/demo.service';
+import {AuthorizationComponent} from '../authorization/feature/authorization.component';
+import {AuthorizationServiceInterface, AuthorizationServiceToken} from '../authorization/authorization.interface';
 
 
 @Injectable({
@@ -13,9 +14,10 @@ export class FeatureManagerService {
   private currentFeatureId: string | null = null;
   private featureDefinitions: FeatureDefinition[] = [];
   private homeFeature: FeatureDefinition | undefined;
+  private authorizationComponent: any = AuthorizationComponent;
 
   constructor(
-    private authorizationService: DemoAuthorizationService,
+    @Inject(AuthorizationServiceToken) protected authorizationService: AuthorizationServiceInterface,
     private urlParametersService: UrlParametersService,
   ) {
     this.currentFeatureId = this.urlParametersService.getValue('currentFeature', "");
@@ -35,6 +37,9 @@ export class FeatureManagerService {
   }
 
   getCurrentFeatureComponent(): any | null {
+    if (!this.authorizationService.hasEnoughRights()) {
+      return this.authorizationComponent;
+    }
     let featureDefinition = this.getAuthorizedFeatures().find(definition => definition.id === this.currentFeatureId);
     if (featureDefinition) {
       return featureDefinition.component;
@@ -52,5 +57,4 @@ export class FeatureManagerService {
     this.currentFeatureId = featureId;
     this.urlParametersService.updateUrlParameters({ currentFeature: this.currentFeatureId });
   }
-
 }

@@ -15,8 +15,16 @@
       />
     }
     <div class="flex-grow"></div>
+    @if (authorizationService.hasEnoughRights()) {
+      <p-button
+        icon="pi pi-sign-out"
+        (click)="authorizationService.logout()"
+        severity="danger"
+        outlined="true"
+        size="small"
+      />
+    }
   </div>
-
 }
 
 <div class="flex flex-row">
@@ -33,6 +41,18 @@
             (click)="featureManagerService.setCurrentFeatureById(featureDefinition.id)"
             severity="contrast"
             [variant]="featureDefinition.id === featureManagerService.getCurrentFeatureId() ? undefined : 'text'"
+          />
+          </p-fluid>
+        }
+        @if (authorizationService.hasEnoughRights()) {
+          <div class="flex-grow"></div>
+          <p-fluid class="mb-3">
+          <p-button
+            icon="pi pi-sign-out"
+            label="Logout"
+            (click)="authorizationService.logout()"
+            severity="danger"
+            outlined="true"
           />
           </p-fluid>
         }

@@ -1,0 +1,19 @@
+@if (!authorizationService.isLoggedIn()) {
+  <div class="flex flex-col items-center gap-2">
+    <p class="text-center">Veuillez vous identifier</p>
+    <p-button
+      label="Login"
+      (click)="authorizationService.login()"
+    />
+  </div>
+
+} @else if (authorizationService.getUserRoles().length === 0) {
+  <div class="flex flex-col items-center gap-2">
+    <p class="text-center">Permission insuffisante, contactez l'adminitrateur</p>
+    <p-button
+      label="Logout"
+      severity="danger"
+      (click)="authorizationService.logout()"
+    />
+  </div>
+}
