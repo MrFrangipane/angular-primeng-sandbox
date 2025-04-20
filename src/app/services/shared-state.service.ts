@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, model} from '@angular/core';
 
 
 @Injectable({
@@ -6,7 +6,19 @@ import { Injectable } from '@angular/core';
 })
 
 export class SharedStateService {
-  sliderValue: number = 0;
+  private _sliderValue: number = 0;
+
+  constructor(
+    private urlParameterService: UrlParameterService
+  ) {}
+
+  public get sliderValue(): number {
+    return this._sliderValue;
+  }
+
+  public set sliderValue(value: number) {
+    this._sliderValue = value;
+  }
 
   constructor() { }
 }
