@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class SharedStateService {
+  sliderValue: number = 0;
 
   constructor() { }
 }

@@ -3,8 +3,9 @@
 
 
 h1 {
-  @apply text-2xl;
+  @apply text-xl;
   @apply font-bold;
   @apply text-primary;
   @apply mb-4;
+  @apply text-center;
 }
