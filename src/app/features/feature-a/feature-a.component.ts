@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FeatureAComponent implements OnInit {
-
   word: string = '';
 
   ngOnInit() {
