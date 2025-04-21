@@ -22,7 +22,7 @@ export class FeatureAComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.urlParametersService.setRelevantParameters(['currentFeature']);
+    this.urlParametersService.setRelevantParameters([]);
 
     setTimeout(() => {
       for (let i = 0; i < 1000; i++) {

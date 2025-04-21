@@ -25,7 +25,7 @@ export class FeatureCComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.urlParametersService.setRelevantParameters(['currentFeature', 'sliderValue']);
+    this.urlParametersService.setRelevantParameters(['sliderValue']);
     this.urlParametersService.updateUrlParameters({ sliderValue: this.sharedStateService.sliderValue.toString()})
 
     setTimeout(() => {

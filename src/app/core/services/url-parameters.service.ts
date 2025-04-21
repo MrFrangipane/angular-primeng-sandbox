@@ -33,6 +33,8 @@ export class UrlParametersService {
   }
 
   setRelevantParameters(parameterNames: string[]) {
+    parameterNames.push('currentFeature');
+
     const url = new URL(window.location.href);
     url.searchParams.forEach((value, name, searchParams) => {
       if (!parameterNames.includes(name)) {
