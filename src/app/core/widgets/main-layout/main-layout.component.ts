@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {Button} from 'primeng/button';
 import {Tooltip} from 'primeng/tooltip';
 import {Fluid} from 'primeng/fluid';
@@ -26,6 +26,7 @@ import {AsyncPipe} from '@angular/common';
 })
 
 export class MainLayoutComponent {
+  @Input() sidebarClass: string = "";
 
   constructor(
     protected featureManagerService: FeatureManagerService,
