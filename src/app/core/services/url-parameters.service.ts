@@ -37,10 +37,8 @@ export class UrlParametersService {
 
     const url = new URL(window.location.href);
     let searchParamsCopy = new URLSearchParams(url.searchParams);
-
     searchParamsCopy.forEach((value, name, searchParams) => {
       if (!parameterNames.includes(name)) {
-        console.log(`Deleting parameter ${name} from url`);
         url.searchParams.delete(name);
       }
     })
