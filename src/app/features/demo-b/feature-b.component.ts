@@ -26,7 +26,7 @@ export class FeatureBComponent extends AbstractFeature {
     return ['inputText']
   }
 
-  onInit() {
+  override onInit() {
     this.inputText = this.urlParametersService.getValue('inputText', String) ?? ''
 
     setTimeout(() => {

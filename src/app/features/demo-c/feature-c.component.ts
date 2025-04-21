@@ -19,7 +19,7 @@ import {AbstractFeature} from '../../core/features/feature.abstract';
 export class FeatureCComponent extends AbstractFeature {
   word: string = '';
 
-  onInit() {
+  override onInit() {
     setTimeout(() => {
       this.word = 'delayed Hello World';
     }, 500);
