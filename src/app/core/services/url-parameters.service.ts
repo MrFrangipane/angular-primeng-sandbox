@@ -31,6 +31,9 @@ export class UrlParametersService {
       if (value === '') {
         return null
       }
+      if (type === Number) {
+        return parseInt(value)
+      }
       return new type(value)
     }
     return null

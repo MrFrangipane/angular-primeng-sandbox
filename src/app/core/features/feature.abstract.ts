@@ -25,5 +25,5 @@ export abstract class AbstractFeature implements OnInit {
     this.onInit()
   }
 
-  protected abstract onInit(): void
+  protected onInit(): void {  }
 }

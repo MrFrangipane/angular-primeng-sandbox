@@ -2,16 +2,15 @@ import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
-import {DemoWidgetComponent} from '../../widgets/demo-widget/demo-widget.component';
 import { AbstractFeature } from '../../core/features/feature.abstract';
 import {InputText} from 'primeng/inputtext';
+import {UrlParametersService} from '../../core/services/url-parameters.service';
 
 
 @Component({
   selector: 'app-feature-a',
   imports: [
     FormsModule,
-    DemoWidgetComponent,
     InputText
   ],
   templateUrl: './feature-a.component.html',
@@ -23,11 +22,16 @@ export class FeatureAComponent extends AbstractFeature {
   word: string = '';
   inputText: string = "";
 
+  // constructor example
+  constructor(urlParametersService: UrlParametersService) {
+    super(urlParametersService);
+  }
+
   override getRegisteredUrlParameterNames(): string[] {
     return ['inputText']
   }
 
-  onInit() {
+  override onInit() {
     this.inputText = this.urlParametersService.getValue('inputText', String) ?? ''
 
     setTimeout(() => {
