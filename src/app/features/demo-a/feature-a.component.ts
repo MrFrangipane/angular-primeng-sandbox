@@ -3,12 +3,14 @@ import {FormsModule} from '@angular/forms';
 
 import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
 import {UrlParametersService} from '../../core/services/url-parameters.service';
+import {DemoWidgetComponent} from '../../widgets/demo-widget/demo-widget.component';
 
 
 @Component({
   selector: 'app-feature-a',
   imports: [
-    FormsModule
+    FormsModule,
+    DemoWidgetComponent
   ],
   templateUrl: './feature-a.component.html',
   styleUrl: './feature-a.component.css'
@@ -17,13 +19,7 @@ import {UrlParametersService} from '../../core/services/url-parameters.service';
 export class FeatureAComponent implements OnInit {
   word: string = '';
 
-  constructor(
-    protected urlParametersService: UrlParametersService,
-  ) {}
-
   ngOnInit() {
-    this.urlParametersService.setRelevantParameters([]);
-
     setTimeout(() => {
       for (let i = 0; i < 1000; i++) {
         this.word += 'delayed multiple Hello World ';

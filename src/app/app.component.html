@@ -1,5 +1,7 @@
 <app-main-layout>
   <main #main class="main p-2 md:p-5 w-full">
-    <ng-container *ngComponentOutlet="featureManagerService.getCurrentFeatureComponent()"/>
+    <ng-container
+      *ngComponentOutlet="featureManagerService.getCurrentFeatureComponent()"
+    />
   </main>
 </app-main-layout>

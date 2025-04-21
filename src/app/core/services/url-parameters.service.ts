@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Type} from '@angular/core';
 
 
 @Injectable({
@@ -7,41 +7,57 @@ import { Injectable } from '@angular/core';
 
 export class UrlParametersService {
 
+  private parameterNames: string[] = ['currentFeature']
+
   constructor() { }
 
-  updateUrlParameters(params: { [key: string]: string }) {
-    const url = new URL(window.location.href);
-
-    Object.entries(params).forEach(([key, value]) => {
-      if (value === null || value === undefined) {
-        url.searchParams.delete(key);
-      } else {
-        url.searchParams.set(key, value);
-      }
-    });
-
-    window.history.pushState({}, '', url);
-  }
-
-  getValue(parameterName: string, defaultValue: any) {
-    const url = new URL(window.location.href);
-    const value = url.searchParams.get(parameterName);
-    if (value !== null) {
-      return value;
+  setValue(parameterName: string, value: any) {
+    this.throwOnParameterName(parameterName)
+    if (value === null) {
+      value = ''
     }
-    return defaultValue;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set(parameterName, String(value))
+    window.history.pushState({}, '', url)
   }
 
-  setRelevantParameters(parameterNames: string[]) {
-    parameterNames.push('currentFeature');
+  // TODO find out how to type hint the type
+  getValue(parameterName: string, type: any): any {
+    this.throwOnParameterName(parameterName)
+    const url = new URL(window.location.href)
+    const value = url.searchParams.get(parameterName)
+    if (value !== null) {
+      if (value === '') {
+        return null
+      }
+      return new type(value)
+    }
+    return null
+  }
 
+  resetParameterRegistration() {
+    this.parameterNames = ['currentFeature']
+  }
+
+  registerParameterNames(parameterNames: string[]) {
+    this.parameterNames = this.parameterNames.concat(parameterNames)
+  }
+
+  cleanUrl() {
     const url = new URL(window.location.href);
     let searchParamsCopy = new URLSearchParams(url.searchParams);
     searchParamsCopy.forEach((value, name, searchParams) => {
-      if (!parameterNames.includes(name)) {
+      if (!this.parameterNames.includes(name)) {
         url.searchParams.delete(name);
       }
     })
     window.history.pushState({}, '', url);
+  }
+
+  private throwOnParameterName(parameterName: string) {
+    if (!this.parameterNames.includes(parameterName)) {
+      throw new Error(`Parameter ${parameterName} is not registered`)
+    }
   }
 }

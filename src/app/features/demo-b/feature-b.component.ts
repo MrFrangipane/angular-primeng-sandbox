@@ -5,13 +5,14 @@ import {FormsModule} from '@angular/forms';
 import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
 import {SharedStateService} from '../../core/services/shared-state.service';
 import {UrlParametersService} from '../../core/services/url-parameters.service';
+import {DemoWidgetComponent} from '../../widgets/demo-widget/demo-widget.component';
 
 
 @Component({
   selector: 'app-feature-b',
   imports: [
-    Slider,
-    FormsModule
+    FormsModule,
+    DemoWidgetComponent
   ],
   templateUrl: './feature-b.component.html',
   styleUrl: './feature-b.component.css'
@@ -20,15 +21,7 @@ import {UrlParametersService} from '../../core/services/url-parameters.service';
 export class FeatureBComponent implements OnInit {
   word: string = '';
 
-  constructor(
-    protected sharedStateService: SharedStateService,
-    protected urlParametersService: UrlParametersService,
-  ) {}
-
   ngOnInit() {
-    this.urlParametersService.setRelevantParameters(['sliderValue']);
-    this.urlParametersService.updateUrlParameters({ sliderValue: this.sharedStateService.sliderValue.toString()})
-
     setTimeout(() => {
       this.word = 'delayed Hello World';
     }, 500);
