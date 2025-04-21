@@ -1,3 +1,11 @@
-<h1>Feature B</h1>
-<app-demo-widget/>
-<p>{{ word }}</p>
+<div class="flex flex-col gap-2">
+  <h1>Feature B</h1>
+  <input
+    type="text"
+    pInputText
+    [(ngModel)]="inputText"
+    (change)="onInputTextChange($event)"
+  >
+  <app-demo-widget/>
+  <p>{{ word }}</p>
+</div>

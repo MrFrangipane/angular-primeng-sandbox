@@ -5,6 +5,7 @@ import {SharedStateService} from '../../core/services/shared-state.service';
 import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
 import {UrlParametersService} from '../../core/services/url-parameters.service';
 import {DemoWidgetComponent} from '../../widgets/demo-widget/demo-widget.component';
+import {AbstractFeature} from '../../core/features/feature.abstract';
 
 
 @Component({
@@ -17,10 +18,10 @@ import {DemoWidgetComponent} from '../../widgets/demo-widget/demo-widget.compone
   styleUrl: './feature-c.component.css'
 })
 
-export class FeatureCComponent implements OnInit {
+export class FeatureCComponent extends AbstractFeature {
   word: string = '';
 
-  ngOnInit() {
+  onInit() {
     setTimeout(() => {
       this.word = 'delayed Hello World';
     }, 500);

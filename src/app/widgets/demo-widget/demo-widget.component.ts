@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Slider, SliderChangeEvent} from 'primeng/slider';
 import {FormsModule} from '@angular/forms';
 import {Panel} from 'primeng/panel';
@@ -16,15 +16,18 @@ import {UrlParametersService} from '../../core/services/url-parameters.service';
   styleUrl: './demo-widget.component.css'
 })
 
-export class DemoWidgetComponent {
+export class DemoWidgetComponent implements OnInit {
 
   value: number = 0;
 
   constructor(
     private urlParametersService: UrlParametersService,
   ) {
-    console.log("DEMO WIDGET CONS")
     this.urlParametersService.registerParameterNames(['sliderValue'])
+  }
+
+  ngOnInit() {
+    this.value = this.urlParametersService.getValue('sliderValue', Number) ?? 0
   }
 
   onSliderChange($event: SliderChangeEvent) {
