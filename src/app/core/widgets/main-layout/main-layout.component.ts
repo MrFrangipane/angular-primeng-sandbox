@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, Inject, InjectionToken, Input} from '@angular/core';
 import {Button} from 'primeng/button';
 import {Tooltip} from 'primeng/tooltip';
 import {Fluid} from 'primeng/fluid';
@@ -11,6 +11,8 @@ import {
 } from '../../services/authorization/authorization.interface';
 import {AsyncPipe} from '@angular/common';
 
+
+export const ApplicationTitleInjectionToken = new InjectionToken<string>('ApplicationTitleInjectionToken');
 
 
 @Component({
@@ -32,6 +34,6 @@ export class MainLayoutComponent {
     protected featureManagerService: FeatureManagerService,
     protected screenService: ScreenService,
     @Inject(authorizationServiceInterfaceInjectionToken) protected authorizationService: AuthorizationServiceInterface,
+    @Inject(ApplicationTitleInjectionToken) protected applicationTitle: string
   ) {}
-
 }

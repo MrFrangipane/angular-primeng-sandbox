@@ -7,5 +7,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './centered-frame.component.css'
 })
 export class CenteredFrameComponent {
-    @Input() contentClass: string = "";
+  @Input() contentClass: string = "";
+  @Input() wrapperClass: string = "";
 }
