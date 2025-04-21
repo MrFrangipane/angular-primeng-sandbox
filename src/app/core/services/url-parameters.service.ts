@@ -23,12 +23,22 @@ export class UrlParametersService {
     window.history.pushState({}, '', url);
   }
 
-  getValue(paramterName: string, defaultValue: any) {
+  getValue(parameterName: string, defaultValue: any) {
     const url = new URL(window.location.href);
-    const value = url.searchParams.get(paramterName);
+    const value = url.searchParams.get(parameterName);
     if (value !== null) {
       return value;
     }
     return defaultValue;
+  }
+
+  setRelevantParameters(parameterNames: string[]) {
+    const url = new URL(window.location.href);
+    url.searchParams.forEach((value, name, searchParams) => {
+      if (!parameterNames.includes(name)) {
+        searchParams.delete(name);
+      }
+    })
+    window.history.pushState({}, '', url);
   }
 }

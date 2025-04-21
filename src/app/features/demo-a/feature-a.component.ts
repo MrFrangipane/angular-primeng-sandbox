@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Slider} from 'primeng/slider';
 import {FormsModule} from '@angular/forms';
 
-import {SharedStateService} from '../../core/services/shared-state.service';
 import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
+import {UrlParametersService} from '../../core/services/url-parameters.service';
 
 
 @Component({
   selector: 'app-feature-a',
   imports: [
-    Slider,
     FormsModule
   ],
   templateUrl: './feature-a.component.html',
@@ -20,10 +18,12 @@ export class FeatureAComponent implements OnInit {
   word: string = '';
 
   constructor(
-    protected sharedStateService: SharedStateService,
+    protected urlParametersService: UrlParametersService,
   ) {}
 
   ngOnInit() {
+    this.urlParametersService.setRelevantParameters(['currentFeature']);
+
     setTimeout(() => {
       for (let i = 0; i < 1000; i++) {
         this.word += 'delayed multiple Hello World ';
