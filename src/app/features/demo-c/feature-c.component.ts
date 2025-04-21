@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Slider} from 'primeng/slider';
+import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {SharedStateService} from '../../core/services/shared-state.service';
 import {FeatureDefinition} from '../../core/services/feature-manager/feature-definition.dataclass';
-import {UrlParametersService} from '../../core/services/url-parameters.service';
+
 import {DemoWidgetComponent} from '../../widgets/demo-widget/demo-widget.component';
 import {AbstractFeature} from '../../core/features/feature.abstract';
 

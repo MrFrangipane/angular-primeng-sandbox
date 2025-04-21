@@ -13,8 +13,6 @@ export abstract class AbstractFeature implements OnInit {
   constructor(
     protected urlParametersService: UrlParametersService,
   ) {
-    console.log('AbstractFeature constructor')
-    console.log(this.getRegisteredUrlParameterNames())
     this.urlParametersService.registerParameterNames(this.getRegisteredUrlParameterNames())
   }
 
