@@ -50,8 +50,10 @@ export class FeatureManagerService {
   }
 
   // FIXME home component is always returned after login, despite url params !!
+  // FIXME use observables otherwise this is called all the time
   getCurrentFeatureComponent(): any | null {
-    if (!this.authorizationService.getInfo().hasEnoughRights()) {
+    let  info = this.authorizationService.getInfo()
+    if (!info.hasEnoughRights()) {
       return this.authorizationComponent
     }
     let featureDefinition = this.getAuthorizedFeatures().find(definition => definition.id === this.currentFeatureId)
