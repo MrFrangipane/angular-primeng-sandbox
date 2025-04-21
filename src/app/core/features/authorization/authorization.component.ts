@@ -5,12 +5,16 @@ import {
   AuthorizationServiceInterface,
   authorizationServiceInterfaceInjectionToken
 } from '../../services/authorization/authorization.interface';
+import {AsyncPipe} from '@angular/common';
+import {ProgressSpinner} from 'primeng/progressspinner';
 
 
 @Component({
   selector: 'app-authorization',
   imports: [
-    Button
+    Button,
+    AsyncPipe,
+    ProgressSpinner
   ],
   templateUrl: './authorization.component.html',
   styleUrl: './authorization.component.css'

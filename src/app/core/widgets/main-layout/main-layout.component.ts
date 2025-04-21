@@ -9,6 +9,7 @@ import {
   AuthorizationServiceInterface,
   authorizationServiceInterfaceInjectionToken
 } from '../../services/authorization/authorization.interface';
+import {AsyncPipe} from '@angular/common';
 
 
 
@@ -18,6 +19,7 @@ import {
     Button,
     Tooltip,
     Fluid,
+    AsyncPipe,
   ],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.css'
