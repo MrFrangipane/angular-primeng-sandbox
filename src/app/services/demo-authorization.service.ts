@@ -12,11 +12,12 @@ export class DemoAuthorizationService implements AuthorizationServiceInterface {
 
   private _isLoggedIn: boolean = false
   private _isLoading: BehaviorSubject<boolean> = new BehaviorSubject(true)
+  private _delayMs: number = 250
 
   constructor() {
     setTimeout(() => {
       this._isLoading.next(false)
-    }, 1000)
+    }, this._delayMs)
   }
 
   isLoading(): Observable<boolean> {
@@ -38,7 +39,7 @@ export class DemoAuthorizationService implements AuthorizationServiceInterface {
     setTimeout(() => {
       this._isLoggedIn = true
       this._isLoading.next(false)
-    }, 1000)
+    }, this._delayMs)
   }
 
   logout() {
@@ -46,6 +47,6 @@ export class DemoAuthorizationService implements AuthorizationServiceInterface {
     setTimeout(() => {
       this._isLoggedIn = false
       this._isLoading.next(false)
-    }, 1000)
+    }, this._delayMs)
   }
 }

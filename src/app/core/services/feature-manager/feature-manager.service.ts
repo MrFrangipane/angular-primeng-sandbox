@@ -56,7 +56,7 @@ export class FeatureManagerService {
     if (!info.hasEnoughRights()) {
       return this.authorizationComponent
     }
-    let featureDefinition = this.getAuthorizedFeatures().find(definition => definition.id === this.currentFeatureId)
+    let featureDefinition = this.getAuthorizedFeatures().find(definition => definition.id == this.currentFeatureId)
     if (featureDefinition) {
       return featureDefinition.component
     }
