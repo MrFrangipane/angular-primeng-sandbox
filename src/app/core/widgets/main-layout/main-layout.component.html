@@ -12,7 +12,7 @@
           size="small"
           pTooltip="{{ featureDefinition.name }}"
           tooltipPosition="bottom"
-          [outlined]="featureDefinition.id !== featureManagerService.getCurrentFeatureId()"
+          [outlined]="featureDefinition.id != featureManagerService.getCurrentFeatureId()"
         />
       }
       <div class="flex-grow"></div>
